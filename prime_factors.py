@@ -94,7 +94,6 @@ def main():
     try:
         record_dict = load_archive(archive_file)
     except FileNotFoundError:
-    # except:
         init_archive(archive_file)
         record_dict = {}
     if str(number) in record_dict.keys():
