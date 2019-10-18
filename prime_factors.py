@@ -26,6 +26,16 @@ def load_archive(archive_file_path):
             sys.exit(1)
     return archive_dict
 
+def validate_number(number):
+    ''' validate if integer and natural number '''
+    try:
+        number = int(number)
+    except ValueError:
+        raise Exception('not a valid integer')
+    if number < 0:
+        raise Exception('not a natural number')
+    return number
+
 def get_prime_factors(number):
     '''function to find prime factors of an integer'''
     start_time = time.time()
@@ -79,11 +89,7 @@ def main():
 
     testing = arguments.testing
 
-    try:
-        number = int(arguments.number)
-    except ValueError:
-        print('Error: not a valid integer')
-        sys.exit(1)
+    number = validate_number(arguments.number)
 
     try:
         record_dict = load_archive(archive_file)
