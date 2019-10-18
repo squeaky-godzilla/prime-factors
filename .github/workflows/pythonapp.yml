@@ -1,0 +1,23 @@
+name: Python application
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Set up Python 3.7
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.7
+    - name: Lint with pylint
+      run: |
+        pip install pylint-fail-under
+        pylint-fail-under --fail_under 9.0 prime_factors.py
+    - name: Test with pytest
+      run: |
+        pip install pytest
+        pytest -vvv
